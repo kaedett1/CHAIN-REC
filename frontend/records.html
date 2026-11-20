@@ -1,0 +1,165 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Records | CHAIN-REC</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="css/dashboard.css" />
+    <link rel="stylesheet" href="css/records.css" />
+  </head>
+  <body>
+    <div class="app">
+      <aside class="sidebar" id="sidebar">
+        <div class="sidebar-brand">
+          <img src="images/logo.png" alt="PUP Logo" />
+          <div>
+            <strong>CHAIN<span>-REC</span></strong>
+            <small>PUP ITECH Registrar</small>
+          </div>
+        </div>
+
+        <p class="nav-label">Main Menu</p>
+        <nav class="nav">
+          <a href="dashboard.html">
+            <span class="material-symbols-outlined">dashboard</span> Dashboard
+          </a>
+          <a href="upload.html">
+            <span class="material-symbols-outlined">upload_file</span> Upload
+            Document
+          </a>
+          <a href="verify.html">
+            <span class="material-symbols-outlined">verified</span> Verify
+            Document
+          </a>
+          <a href="records.html" class="active">
+            <span class="material-symbols-outlined">folder_open</span> Records
+          </a>
+          <a href="logs.html">
+            <span class="material-symbols-outlined">history</span> Activity Logs
+          </a>
+        </nav>
+
+        <p class="nav-label admin-only">Administration</p>
+        <nav class="nav admin-only">
+          <a href="users.html">
+            <span class="material-symbols-outlined">group</span> Users
+          </a>
+          <a href="#">
+            <span class="material-symbols-outlined">settings</span> Settings
+          </a>
+        </nav>
+
+        <a href="index.html" class="logout" id="logoutBtn">
+          <span class="material-symbols-outlined">logout</span> Log out
+        </a>
+      </aside>
+
+      <div class="main">
+        <header class="topbar">
+          <button class="menu-btn" id="menuBtn">
+            <span class="material-symbols-outlined">menu</span>
+          </button>
+          <h2 class="page-title">Records</h2>
+        </header>
+
+        <main class="content">
+          <div class="card">
+            <div class="toolbar">
+              <div class="search-box">
+                <span class="material-symbols-outlined">search</span>
+                <input
+                  type="text"
+                  id="searchInput"
+                  placeholder="Search name, student number, or hash..."
+                />
+              </div>
+
+              <select id="typeFilter">
+                <option value="">All document types</option>
+                <option>Transcript of Records</option>
+                <option>Certificate of Enrollment</option>
+                <option>Certificate of Grades</option>
+                <option>Good Moral Certificate</option>
+                <option>Diploma</option>
+              </select>
+
+              <span class="count" id="countText"></span>
+            </div>
+
+            <div class="table-wrap">
+              <table>
+                <thead>
+                  <tr>
+                    <th>Student</th>
+                    <th>Student No.</th>
+                    <th>Document</th>
+                    <th>Date Issued</th>
+                    <th>Hash</th>
+                    <th>Action</th>
+                  </tr>
+                </thead>
+                <tbody id="recordBody"></tbody>
+              </table>
+            </div>
+
+            <p class="empty-note" id="emptyMessage" hidden>No records found.</p>
+          </div>
+        </main>
+      </div>
+    </div>
+
+    <div class="modal" id="modal" hidden>
+      <div class="modal-box">
+        <div class="modal-head">
+          <h2>Document Details</h2>
+          <button type="button" id="closeModal" class="close-btn">
+            <span class="material-symbols-outlined">close</span>
+          </button>
+        </div>
+
+        <dl class="details">
+          <dt>Student</dt>
+          <dd id="dStudent"></dd>
+          <dt>Student Number</dt>
+          <dd id="dStudentNo"></dd>
+          <dt>Document Type</dt>
+          <dd id="dType"></dd>
+          <dt>Date Issued</dt>
+          <dd id="dDate"></dd>
+          <dt>File Name</dt>
+          <dd id="dFile"></dd>
+          <dt>Registered At</dt>
+          <dd id="dRegistered"></dd>
+          <dt>Block Number</dt>
+          <dd id="dBlock"></dd>
+          <dt>Transaction</dt>
+          <dd id="dTx"></dd>
+        </dl>
+
+        <div class="hash-box">
+          <small>Document Hash (SHA-256)</small>
+          <code id="dHash"></code>
+        </div>
+        <button type="button" class="view-file-btn" id="viewFileBtn">
+          <span class="material-symbols-outlined">visibility</span> View File
+        </button>
+        <button type="button" class="copy-btn" id="copyBtn">
+          <span class="material-symbols-outlined">content_copy</span> Copy Hash
+        </button>
+      </div>
+    </div>
+
+    <script src="js/records.js"></script>
+    <script src="js/toast.js"></script>
+    <script src="js/records.js"></script>
+  </body>
+</html>

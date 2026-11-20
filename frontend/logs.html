@@ -1,0 +1,128 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Activity Logs | CHAIN-REC</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="css/dashboard.css" />
+    <link rel="stylesheet" href="css/logs.css" />
+  </head>
+  <body>
+    <div class="app">
+      <aside class="sidebar" id="sidebar">
+        <div class="sidebar-brand">
+          <img src="images/logo.png" alt="PUP Logo" />
+          <div>
+            <strong>CHAIN<span>-REC</span></strong>
+            <small>PUP ITECH Registrar</small>
+          </div>
+        </div>
+
+        <p class="nav-label">Main Menu</p>
+        <nav class="nav">
+          <a href="dashboard.html">
+            <span class="material-symbols-outlined">dashboard</span> Dashboard
+          </a>
+          <a href="upload.html">
+            <span class="material-symbols-outlined">upload_file</span> Upload
+            Document
+          </a>
+          <a href="verify.html">
+            <span class="material-symbols-outlined">verified</span> Verify
+            Document
+          </a>
+          <a href="records.html">
+            <span class="material-symbols-outlined">folder_open</span> Records
+          </a>
+          <a href="logs.html" class="active">
+            <span class="material-symbols-outlined">history</span> Activity Logs
+          </a>
+        </nav>
+
+        <p class="nav-label admin-only">Administration</p>
+        <nav class="nav admin-only">
+          <a href="users.html">
+            <span class="material-symbols-outlined">group</span> Users
+          </a>
+          <a href="#">
+            <span class="material-symbols-outlined">settings</span> Settings
+          </a>
+        </nav>
+
+        <a href="index.html" class="logout" id="logoutBtn">
+          <span class="material-symbols-outlined">logout</span> Log out
+        </a>
+      </aside>
+
+      <div class="main">
+        <header class="topbar">
+          <button class="menu-btn" id="menuBtn">
+            <span class="material-symbols-outlined">menu</span>
+          </button>
+          <h2 class="page-title">Activity Logs</h2>
+        </header>
+
+        <main class="content">
+          <div class="card">
+            <p class="scope-note" id="scopeNote"></p>
+
+            <div class="toolbar">
+              <div class="search-box">
+                <span class="material-symbols-outlined">search</span>
+                <input
+                  type="text"
+                  id="searchInput"
+                  placeholder="Search user or details..."
+                />
+              </div>
+
+              <select id="actionFilter">
+                <option value="">All actions</option>
+                <option value="LOGIN">Login</option>
+                <option value="LOGIN_FAILED">Failed login</option>
+                <option value="REGISTER_DOCUMENT">Document registered</option>
+                <option value="VERIFY_AUTHENTIC">Verified: authentic</option>
+                <option value="VERIFY_NOT_FOUND">Verified: not found</option>
+                <option value="CREATE_USER">Account created</option>
+                <option value="DISABLE_USER">Account disabled</option>
+                <option value="ENABLE_USER">Account enabled</option>
+                <option value="VIEW_FILE">File viewed</option>
+              </select>
+
+              <span class="count" id="countText"></span>
+            </div>
+
+            <div class="table-wrap">
+              <table>
+                <thead>
+                  <tr>
+                    <th>Date and Time</th>
+                    <th>User</th>
+                    <th>Action</th>
+                    <th>Details</th>
+                  </tr>
+                </thead>
+                <tbody id="logBody"></tbody>
+              </table>
+            </div>
+
+            <p class="empty-note" id="emptyMessage" hidden>
+              No activity found.
+            </p>
+          </div>
+        </main>
+      </div>
+    </div>
+
+    <script src="js/logs.js"></script>
+  </body>
+</html>

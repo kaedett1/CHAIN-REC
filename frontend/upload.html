@@ -1,0 +1,197 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Upload Document | CHAIN-REC</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="css/dashboard.css" />
+    <link rel="stylesheet" href="css/upload.css" />
+  </head>
+  <body>
+    <div class="app">
+      <!-- SIDEBAR -->
+      <aside class="sidebar" id="sidebar">
+        <div class="sidebar-brand">
+          <img src="images/logo.png" alt="PUP Logo" />
+          <div>
+            <strong>CHAIN<span>-REC</span></strong>
+            <small>PUP ITECH Registrar</small>
+          </div>
+        </div>
+
+        <p class="nav-label">Main Menu</p>
+        <nav class="nav">
+          <a href="dashboard.html">
+            <span class="material-symbols-outlined">dashboard</span> Dashboard
+          </a>
+          <a href="upload.html" class="active">
+            <span class="material-symbols-outlined">upload_file</span> Upload
+            Document
+          </a>
+          <a href="verify.html">
+            <span class="material-symbols-outlined">verified</span> Verify
+            Document
+          </a>
+          <a href="records.html">
+            <span class="material-symbols-outlined">folder_open</span> Records
+          </a>
+          <a href="logs.html">
+            <span class="material-symbols-outlined">history</span> Activity Logs
+          </a>
+        </nav>
+
+        <p class="nav-label admin-only">Administration</p>
+        <nav class="nav admin-only">
+          <a href="users.html">
+            <span class="material-symbols-outlined">group</span> Users
+          </a>
+          <a href="#">
+            <span class="material-symbols-outlined">settings</span> Settings
+          </a>
+        </nav>
+
+        <a href="index.html" class="logout" id="logoutBtn">
+          <span class="material-symbols-outlined">logout</span> Log out
+        </a>
+      </aside>
+
+      <!-- MAIN -->
+      <div class="main">
+        <header class="topbar">
+          <button class="menu-btn" id="menuBtn">
+            <span class="material-symbols-outlined">menu</span>
+          </button>
+          <h2 class="page-title">Upload Document</h2>
+        </header>
+
+        <main class="content">
+          <section class="upload-layout">
+            <!-- FORM CARD -->
+            <div class="card">
+              <div class="card-head">
+                <h2>Document Details</h2>
+              </div>
+
+              <form id="uploadForm" novalidate>
+                <div class="row">
+                  <div class="field">
+                    <label for="studentName">Student Name</label>
+                    <input
+                      type="text"
+                      id="studentName"
+                      placeholder="e.g. Juan Dela Cruz"
+                    />
+                  </div>
+                  <div class="field">
+                    <label for="studentNo">Student Number</label>
+                    <input
+                      type="text"
+                      id="studentNo"
+                      placeholder="e.g. 2022-00123-TG-0"
+                    />
+                  </div>
+                </div>
+
+                <div class="row">
+                  <div class="field">
+                    <label for="docType">Document Type</label>
+                    <select id="docType">
+                      <option value="">Select type</option>
+                      <option>Transcript of Records</option>
+                      <option>Certificate of Enrollment</option>
+                      <option>Certificate of Grades</option>
+                      <option>Good Moral Certificate</option>
+                      <option>Diploma</option>
+                    </select>
+                  </div>
+                  <div class="field">
+                    <label for="dateIssued">Date Issued</label>
+                    <input type="date" id="dateIssued" />
+                  </div>
+                </div>
+
+                <label class="label">Document File</label>
+                <div class="dropzone" id="dropzone">
+                  <span class="material-symbols-outlined big"
+                    >cloud_upload</span
+                  >
+                  <h3>Drag and drop the document here</h3>
+                  <p>or click to browse (PDF, JPG, PNG)</p>
+                  <input
+                    type="file"
+                    id="fileInput"
+                    accept=".pdf,.jpg,.jpeg,.png"
+                    hidden
+                  />
+                </div>
+
+                <div class="file-info" id="fileInfo" hidden>
+                  <span class="material-symbols-outlined">description</span>
+                  <div>
+                    <strong id="fileName">file.pdf</strong>
+                    <small id="fileSize">0 KB</small>
+                  </div>
+                  <button type="button" id="clearBtn" class="clear-btn">
+                    Remove
+                  </button>
+                </div>
+
+                <div class="hash-box" id="hashBox" hidden>
+                  <small>Document Hash (SHA-256)</small>
+                  <code id="hashValue"></code>
+                </div>
+
+                <p class="error" id="errorMessage"></p>
+
+                <button type="submit" class="submit-btn" id="submitBtn">
+                  <span class="material-symbols-outlined">lock</span> Register
+                  Document
+                </button>
+              </form>
+            </div>
+
+            <!-- SIDE CARDS -->
+            <div class="side">
+              <div class="card tips">
+                <div class="card-head">
+                  <h2>How it works</h2>
+                </div>
+                <ol>
+                  <li>Fill in the student and document details.</li>
+                  <li>Choose the official document file.</li>
+                  <li>The system computes its unique hash.</li>
+                  <li>The hash is saved as proof of the original document.</li>
+                </ol>
+                <p class="tip-note">
+                  The file itself is not stored. Only its hash is, so anyone can
+                  verify it later.
+                </p>
+              </div>
+
+              <div class="card" id="successCard" hidden>
+                <div class="card-head">
+                  <h2>Registered</h2>
+                </div>
+                <div class="success-body">
+                  <span class="material-symbols-outlined">check_circle</span>
+                  <p id="successText"></p>
+                </div>
+              </div>
+            </div>
+          </section>
+        </main>
+      </div>
+    </div>
+
+    <script src="js/upload.js"></script>
+  </body>
+</html>

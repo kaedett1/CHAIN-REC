@@ -1,0 +1,6 @@
+[
+  "function owner() view returns (address)",
+  "function totalDocuments() view returns (uint256)",
+  "function storeHash(bytes32 docHash)",
+  "function verifyHash(bytes32 docHash) view returns (bool exists, uint256 timestamp, address registeredBy)"
+]
